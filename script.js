@@ -59,14 +59,30 @@ function Person(name){
 	this.name = name
 }
 
-function Student(goodStudent){
+
+function Student(name,goodStudent,currentGrade){
 	this.goodStudent = goodStudent
 	Person.apply(this, arguments);
-	var currentGrade = 100
+	var currentGrade = 100;
+	students.push(this);
 }
 
-function Teacher(goodTeacher){
+
+var students = []
+
+var ian = new Student("Ian", true)
+
+function Teacher(name,goodTeacher){
 	this.goodTeacher = goodTeacher
 	Person.apply(this,arguments)
+	teachers.push(this)
 }
-var ian = new Student(true, "Ian")
+
+var teachers = []
+
+var chris = new Teacher("Chris", true)
+
+
+var school = [students,teachers]
+
+
