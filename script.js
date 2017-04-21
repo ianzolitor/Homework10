@@ -67,9 +67,9 @@ var school = {
 	schoolOpens: schoolOpens
 }
 
-function Student(name,goodStudent,currentGrade){
-	this.goodStudent = goodStudent;
-	this.currentGrade = currentGrade;
+function Student(name){
+	this.goodStudent = true;
+	this.currentGrade = 100;
 	Person.apply(this, arguments);
 	school.schoolStudents.push(this);
 	this.detention = false;
@@ -78,9 +78,9 @@ function Student(name,goodStudent,currentGrade){
 
 var students = []
 
-var ian = new Student("Ian", true, 100);
-var rob = new Student("Rob", true, 100);
-var susan = new Student("Susan", true,100);
+var ian = new Student("Ian");
+var rob = new Student("Rob");
+var susan = new Student("Susan");
 
 function Teacher(name){
 	this.goodTeacher = false;
