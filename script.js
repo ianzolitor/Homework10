@@ -60,47 +60,41 @@ function Person(name){
 }
 
 var school = {
-	teachers: [], 
-	students: [],
+	schoolTeachers: [], 
+	schoolStudents: [],
 	schoolOpen: true,
-	schoolClose: schoolClose
+	schoolClose: schoolClose,
+	schoolOpens: schoolOpens
 }
-
 
 function Student(name,goodStudent,currentGrade){
 	this.goodStudent = goodStudent;
 	this.currentGrade = currentGrade;
 	Person.apply(this, arguments);
-	school.students.push(this);
+	school.schoolStudents.push(this);
 	this.detention = false;
 	this.giveApple = giveApple;
 }
 
-
-
+var students = []
 
 var ian = new Student("Ian", true, 100);
 var rob = new Student("Rob", true, 100);
 var susan = new Student("Susan", true,100);
 
-
-
 function Teacher(name){
 	this.goodTeacher = false;
 	Person.apply(this,arguments);
-	school.teachers.push(this);
+	school.schoolTeachers.push(this);
 	this.apples = 0;
 	this.grade = grade;
 	this.giveDetention = giveDetention;
 }
 
-
+var teachers = []
 
 var chris = new Teacher("Chris", true)
 var oggi = new Teacher("Oggi", true)
-
-
-
 
 
 function grade (student, grade){
@@ -115,7 +109,6 @@ function giveDetention(student){
 	student.detention = true
 }
 
-
 function giveApple (teacher, appleAmount) {
 	teacher.apples += appleAmount
 	if (teacher.apples >= 3) {
@@ -127,9 +120,19 @@ function giveApple (teacher, appleAmount) {
 
 function schoolClose() {
 	school.schoolOpen = false;
-	school.teachers = [];
-	school.students = [];
+	teachers = school.schoolTeachers;
+	students = school.schoolStudents;
+	school.schoolTeachers = [];
+	school.schoolStudents = [];
+
 }
 
+function schoolOpens() {
+	school.schoolOpen = true;
+	school.schoolTeachers = teachers;
+	school.schoolStudents = students;
+	teachers = []
+	students = []
+}
 
 
